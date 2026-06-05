@@ -10,16 +10,16 @@
         <video src="{{item}}" controls></video>
         <view class="remove" data-type="video" data-index="{{index}}" bindtap="removeMedia">×</view>
       </view>
-      <view class="upload" bindtap="chooseImages">＋图片</view>
-      <view class="upload" bindtap="chooseVideo">＋视频</view>
+      <view class="upload" bindtap="chooseImages">+ 图片</view>
+      <view class="upload" bindtap="chooseVideo">+ 视频</view>
     </view>
-    <view class="hint">最多 12 张图片、3 个视频。</view>
+    <view class="hint">最多 12 张图片，3 个视频。</view>
   </view>
 
   <view class="form-card">
     <view class="section-title">基础信息</view>
-    <input placeholder="标题，如：福田口岸通勤两居" value="{{form.title}}" data-field="title" bindinput="onInput" />
-    <input placeholder="价格，如：¥5200/月" value="{{form.price}}" data-field="price" bindinput="onInput" />
+    <input placeholder="标题，例如：福田口岸通勤两居" value="{{form.title}}" data-field="title" bindinput="onInput" />
+    <input placeholder="价格，例如：¥5200/月" value="{{form.price}}" data-field="price" bindinput="onInput" />
     <input placeholder="区域/位置" value="{{form.location}}" data-field="location" bindinput="onInput" />
     <input placeholder="小区" value="{{form.community}}" data-field="community" bindinput="onInput" />
     <view class="two-col">
@@ -30,14 +30,14 @@
       <input placeholder="朝向" value="{{form.orientation}}" data-field="orientation" bindinput="onInput" />
       <input placeholder="楼层" value="{{form.floor}}" data-field="floor" bindinput="onInput" />
     </view>
-    <input placeholder="通勤，如：步行 8 分钟" value="{{form.commute}}" data-field="commute" bindinput="onInput" />
+    <input placeholder="通勤，例如：步行 8 分钟" value="{{form.commute}}" data-field="commute" bindinput="onInput" />
     <picker mode="selector" range="{{statusOptions}}" value="{{statusIndex}}" bindchange="onStatusChange">
       <view class="picker">状态：{{form.status}}</view>
     </picker>
   </view>
 
   <view class="form-card">
-    <view class="section-title">评价</view>
+    <view class="section-title">看房记录</view>
     <textarea placeholder="优点，一行一条" value="{{prosText}}" data-field="prosText" bindinput="onInput"></textarea>
     <textarea placeholder="缺点，一行一条" value="{{consText}}" data-field="consText" bindinput="onInput"></textarea>
     <textarea placeholder="备注" value="{{form.note}}" data-field="note" bindinput="onInput"></textarea>
@@ -45,7 +45,7 @@
   </view>
 
   <view class="form-card">
-    <view class="section-title">其它</view>
+    <view class="section-title">其他</view>
     <picker mode="date" value="{{form.visitDate}}" bindchange="onVisitDateChange">
       <view class="picker">看房日期：{{form.visitDate || '未选择'}}</view>
     </picker>
