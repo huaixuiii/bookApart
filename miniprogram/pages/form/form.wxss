@@ -2,6 +2,7 @@
   min-height: 100vh;
   padding: 24rpx;
   box-sizing: border-box;
+  background: linear-gradient(180deg, #f8f4ee 0%, #fbfaf7 48%, #f4efe7 100%);
 }
 
 .form-card {
