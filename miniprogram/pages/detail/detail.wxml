@@ -1,0 +1,67 @@
+<view class="page safe-bottom" wx:if="{{listing}}">
+  <swiper class="media-swiper" indicator-dots autoplay="{{false}}">
+    <swiper-item wx:for="{{listing.images}}" wx:key="*this">
+      <image src="{{item}}" mode="aspectFill" />
+    </swiper-item>
+    <swiper-item wx:for="{{listing.videos}}" wx:key="*this">
+      <video src="{{item}}" controls object-fit="cover"></video>
+    </swiper-item>
+    <swiper-item wx:if="{{!listing.images.length && !listing.videos.length}}">
+      <view class="media-empty">暂无媒体</view>
+    </swiper-item>
+  </swiper>
+
+  <view class="content-card">
+    <view class="top-row">
+      <view>
+        <view class="price">{{listing.price || '价格待补充'}}</view>
+        <view class="title">{{listing.title || listing.community || '未命名房源'}}</view>
+      </view>
+      <view class="status">{{listing.status}}</view>
+    </view>
+
+    <view class="info-grid">
+      <view><text>位置</text>{{listing.location || '-'}}</view>
+      <view><text>小区</text>{{listing.community || '-'}}</view>
+      <view><text>户型</text>{{listing.layout || '-'}}</view>
+      <view><text>面积</text>{{listing.area || '-'}}</view>
+      <view><text>朝向</text>{{listing.orientation || '-'}}</view>
+      <view><text>楼层</text>{{listing.floor || '-'}}</view>
+      <view><text>通勤</text>{{listing.commute || '-'}}</view>
+      <view><text>评分</text>{{listing.rating ? listing.rating + ' / 5' : '-'}}</view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">优点</view>
+      <view wx:for="{{listing.pros}}" wx:key="*this" class="tag good">{{item}}</view>
+      <view wx:if="{{!listing.pros.length}}" class="muted">还没记录优点</view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">缺点</view>
+      <view wx:for="{{listing.cons}}" wx:key="*this" class="tag bad">{{item}}</view>
+      <view wx:if="{{!listing.cons.length}}" class="muted">还没记录缺点</view>
+    </view>
+
+    <view class="section">
+      <view class="section-title">备注</view>
+      <view class="note">{{listing.note || '暂无备注'}}</view>
+    </view>
+
+    <view class="extra">
+      <view>看房日期：{{listing.visitDate || '-'}}</view>
+      <view>联系人：{{listing.contact || '-'}}</view>
+      <view wx:if="{{listing.sourceUrl}}">来源：{{listing.sourceUrl}}</view>
+    </view>
+  </view>
+
+  <view class="actions">
+    <button class="secondary" bindtap="deleteCurrent">删除</button>
+    <button class="primary" bindtap="editCurrent">编辑</button>
+  </view>
+</view>
+
+<view wx:else class="empty-state">
+  <view class="empty-title">没找到这套房源</view>
+  <view class="empty-desc">可能已删除，返回首页看看其它卡片。</view>
+</view>
