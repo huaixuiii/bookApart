@@ -1,9 +1,10 @@
-const { getListing, deleteListing } = require('../../utils/listingService');
+const { getListing, deleteListing, toggleFavorite, isFavorite } = require('../../utils/listingService');
 
 Page({
   data: {
     id: '',
-    listing: null
+    listing: null,
+    favorite: false
   },
 
   onLoad(options) {
@@ -19,7 +20,10 @@ Page({
     wx.showLoading({ title: '加载中' });
     try {
       const listing = await getListing(this.data.id);
-      this.setData({ listing });
+      this.setData({
+        listing,
+        favorite: isFavorite(this.data.id)
+      });
     } catch (error) {
       wx.showToast({ title: '加载失败', icon: 'none' });
     } finally {
@@ -48,6 +52,16 @@ Page({
           wx.showToast({ title: '删除失败', icon: 'none' });
         }
       }
+    });
+  },
+
+  toggleFavorite() {
+    const nextIds = toggleFavorite(this.data.id);
+    const nextFavorite = nextIds.includes(this.data.id);
+    this.setData({ favorite: nextFavorite });
+    wx.showToast({
+      title: nextFavorite ? '已加入喜欢' : '已取消喜欢',
+      icon: 'none'
     });
   }
 });
