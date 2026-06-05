@@ -1,10 +1,19 @@
 <view class="page safe-bottom">
-  <view class="header">
-    <view>
-      <view class="eyebrow">轻量记录 · 慢慢挑</view>
-      <view class="title">我的房源卡片</view>
-    </view>
-    <button class="add-small" bindtap="goCreate">新增</button>
+  <view class="hero">
+    <view class="eyebrow">口岸租房 · 轻量记录</view>
+    <view class="title">我的房源卡片</view>
+    <view class="summary">共 {{stats.total}} 套，{{stats.liked}} 套喜欢，{{stats.visited}} 套已看，{{stats.eliminated}} 套淘汰</view>
+  </view>
+
+  <view class="search-bar">
+    <input
+      placeholder="搜标题、小区、位置、通勤"
+      value="{{keyword}}"
+      bindinput="onKeywordInput"
+      bindconfirm="searchListings"
+    />
+    <button wx:if="{{keyword}}" class="ghost" bindtap="clearKeyword">清空</button>
+    <button class="primary-mini" bindtap="searchListings">搜索</button>
   </view>
 
   <scroll-view class="status-tabs" scroll-x>
@@ -14,6 +23,16 @@
       class="status-tab {{activeStatus === item ? 'active' : ''}}"
       data-status="{{item}}"
       bindtap="switchStatus"
+    >{{item}}</view>
+  </scroll-view>
+
+  <scroll-view class="sort-tabs" scroll-x>
+    <view
+      wx:for="{{sortOptions}}"
+      wx:key="*this"
+      class="sort-tab {{activeSort === item ? 'active' : ''}}"
+      data-sort="{{item}}"
+      bindtap="switchSort"
     >{{item}}</view>
   </scroll-view>
 
