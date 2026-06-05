@@ -1,0 +1,65 @@
+<view class="page safe-bottom">
+  <view class="header">
+    <view>
+      <view class="eyebrow">轻量记录 · 慢慢挑</view>
+      <view class="title">我的房源卡片</view>
+    </view>
+    <button class="add-small" bindtap="goCreate">新增</button>
+  </view>
+
+  <scroll-view class="status-tabs" scroll-x>
+    <view
+      wx:for="{{statusTabs}}"
+      wx:key="*this"
+      class="status-tab {{activeStatus === item ? 'active' : ''}}"
+      data-status="{{item}}"
+      bindtap="switchStatus"
+    >{{item}}</view>
+  </scroll-view>
+
+  <block wx:if="{{listings.length}}">
+    <swiper class="listing-swiper" current="{{currentIndex}}" bindchange="onSwiperChange" duration="240">
+      <swiper-item wx:for="{{listings}}" wx:key="_id">
+        <view class="card" data-id="{{item._id}}" bindtap="goDetail">
+          <view class="cover {{item.coverUrl ? '' : 'empty-cover'}}">
+            <image wx:if="{{item.coverUrl}}" src="{{item.coverUrl}}" mode="aspectFill" />
+            <view wx:else class="cover-placeholder">暂无图片</view>
+            <view class="status-pill">{{item.status}}</view>
+          </view>
+          <view class="card-body">
+            <view class="price">{{item.price || '价格待补充'}}</view>
+            <view class="name">{{item.title || item.community || '未命名房源'}}</view>
+            <view class="meta">
+              <text>{{item.location || '位置待补充'}}</text>
+              <text>{{item.community}}</text>
+            </view>
+            <view class="facts">
+              <view>{{item.layout || '户型待补充'}}</view>
+              <view>{{item.area || '面积待补充'}}</view>
+              <view>{{item.commute || '通勤待补充'}}</view>
+            </view>
+            <view class="quick-review">
+              <view class="review-block good">
+                <view class="review-title">优点</view>
+                <view>{{item.pros[0] || '还没记录'}}</view>
+              </view>
+              <view class="review-block bad">
+                <view class="review-title">缺点</view>
+                <view>{{item.cons[0] || '还没记录'}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+    <view class="counter">{{currentIndex + 1}} / {{listings.length}}</view>
+  </block>
+
+  <view wx:else class="empty-state">
+    <view class="empty-title">还没有房源</view>
+    <view class="empty-desc">先记录第一套，看图、优缺点和通勤都放在一张卡里。</view>
+    <button class="primary" bindtap="goCreate">添加第一套</button>
+  </view>
+
+  <button class="floating-add" bindtap="goCreate">＋</button>
+</view>
