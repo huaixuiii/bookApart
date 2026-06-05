@@ -62,6 +62,6 @@
 </view>
 
 <view wx:else class="empty-state">
-  <view class="empty-title">没找到这套房源</view>
-  <view class="empty-desc">可能已删除，返回首页看看其它卡片。</view>
+  <view class="empty-title">没有找到这套房源</view>
+  <view class="empty-desc">它可能已经被删除，或者你可以回到首页看看其他卡片。</view>
 </view>
