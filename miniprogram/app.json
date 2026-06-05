@@ -1,0 +1,15 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/detail/detail",
+    "pages/form/form"
+  ],
+  "window": {
+    "navigationBarTitleText": "口岸找房",
+    "navigationBarBackgroundColor": "#F7F4EE",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F7F4EE"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
